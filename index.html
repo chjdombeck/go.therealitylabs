@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reality Labs Coaching Newsletter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { gold: '#D4900C' }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    html, body {
+      background-color: #0d0b08 !important;
+      min-height: 100vh;
+    }
+
+    /* Warm ambient glow behind content */
+    .ambient-glow {
+      background:
+        radial-gradient(ellipse 60% 40% at 70% 50%, rgba(200, 130, 10, 0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 60%, rgba(180, 100, 5, 0.08) 0%, transparent 65%);
+    }
+
+    .gold { color: #D4900C; }
+    .bg-gold { background-color: #D4900C; }
+    .border-gold { border-color: #D4900C; }
+
+    /* Input styling */
+    .rl-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 4px;
+      padding: 14px 16px;
+      width: 100%;
+      font-size: 14px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      outline: none;
+    }
+    .rl-input::placeholder { color: rgba(255,255,255,0.35); }
+    .rl-input:focus {
+      border-color: rgba(212,144,12,0.6);
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* CTA button */
+    .rl-btn {
+      background: #D4900C;
+      color: #0d0b08;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 15px 24px;
+      width: 100%;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .rl-btn:hover { background: #e8a020; }
+    .rl-btn:active { transform: scale(0.99); background: #bf8008; }
+    .rl-btn:focus-visible { outline: 2px solid #D4900C; outline-offset: 2px; }
+
+    /* Tag pill */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(212,144,12,0.5);
+      color: #D4900C;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .tag-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #D4900C;
+    }
+
+    /* Top right badge */
+    .top-badge {
+      border: 1px solid rgba(212,144,12,0.4);
+      color: #D4900C;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+    }
+
+    /* Newsletter mockup card */
+    .mockup-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .mockup-header {
+      background: rgba(212,144,12,0.15);
+      border-bottom: 1px solid rgba(212,144,12,0.2);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mockup-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+
+    /* Divider line */
+    .gold-line {
+      width: 48px;
+      height: 2px;
+      background: #D4900C;
+      margin: 16px 0;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* Bullet check items */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .check-icon {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: #D4900C;
+    }
+  </style>
+</head>
+<body class="ambient-glow relative" style="background-color:#0d0b08 !important;">
+
+  <!-- NAV -->
+  <nav class="relative z-10 flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+    <!-- Logo -->
+    <a href="#">
+      <img src="RealityLabsLogo.png" alt="Reality Labs Coaching" style="height:44px; width:auto;" />
+    </a>
+    <!-- Badge -->
+    <span class="top-badge hidden sm:inline-block">Free Weekly Email Newsletter</span>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <main class="relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-[calc(100vh-72px)] max-w-6xl mx-auto px-6 py-10 gap-12 lg:gap-16">
+
+    <!-- LEFT — Mockup visual -->
+    <div class="w-full lg:w-[46%] flex flex-col gap-4">
+
+      <!-- Main mockup email card -->
+      <div class="mockup-card" style="max-width:420px; margin: 0 auto; width:100%;">
+        <div class="mockup-header">
+          <div class="mockup-dot" style="background:#D4900C;"></div>
+          <div class="mockup-dot" style="background:rgba(212,144,12,0.4);"></div>
+          <div class="mockup-dot" style="background:rgba(212,144,12,0.2);"></div>
+          <span class="text-xs text-white/40 ml-2 font-mono">reality-labs-weekly.email</span>
+        </div>
+        <div class="p-5">
+          <!-- Email header row -->
+          <div class="flex items-center gap-3 mb-3 pb-3" style="border-bottom:1px solid rgba(255,255,255,0.07);">
+            <img src="LDLogomain.png" alt="Reality Labs Coaching" style="height:36px; width:36px; flex-shrink:0;" />
+            <div>
+              <div class="text-white text-xs font-semibold">Carter @ The Reality Labs</div>
+            </div>
+          </div>
+
+          <!-- Subject line -->
+          <div class="text-white font-bold text-sm mb-3 leading-snug">The subconscious mind is &ldquo;Godlike&rdquo; 🧠</div>
+
+          <!-- Body preview -->
+          <div class="space-y-2 mb-4" style="color:rgba(255,255,255,0.55); font-size:12px; line-height:1.65;">
+            <p>The achievement of your goal is right in front of you...</p>
+            <p>But your mind isn't programmed to see it right now.</p>
+            <p>The opportunities lay dormant.</p>
+          </div>
+
+          <!-- Callout -->
+          <div class="mb-4 px-3 py-2 rounded" style="background:rgba(212,144,12,0.08); border-left:2px solid #D4900C;">
+            <div class="text-xs font-bold mb-1" style="color:#D4900C;">A subconscious program is always running...</div>
+            <div class="text-xs leading-relaxed" style="color:rgba(255,255,255,0.45);">And it's either working for you or against you in route to your goal. It can be likened to looking for something in a dark room with only the flame of a candle to find your way.</div>
+          </div>
+
+          <div class="text-center py-2 rounded text-xs font-bold uppercase tracking-widest" style="background:rgba(212,144,12,0.15);color:#D4900C;border:1px solid rgba(212,144,12,0.25);">
+            Read Full Edition →
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating accent cards -->
+      <div class="flex gap-3 justify-center" style="max-width:420px; margin: 0 auto; width:100%;">
+        <div class="flex-1 rounded p-3 text-center" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">
+          <div class="font-bold text-lg" style="color:#D4900C;">Weekly</div>
+          <div class="text-white/40 text-xs mt-0.5">Every Friday</div>
+        </div>
+        <div class="flex-1 rounded p-3 text-center" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">
+          <div class="font-bold text-lg" style="color:#D4900C;">Free</div>
+          <div class="text-white/40 text-xs mt-0.5">No cost, ever</div>
+        </div>
+        <div class="flex-1 rounded p-3 text-center" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">
+          <div class="font-bold text-lg" style="color:#D4900C;">Action</div>
+          <div class="text-white/40 text-xs mt-0.5">Always practical</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT — Form -->
+    <div class="w-full lg:w-[46%]" style="max-width:480px;">
+
+      <div class="tag-pill">Join The Reality Labs Newsletter</div>
+
+      <h1 class="text-white font-black leading-none mb-2" style="font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.02em;">
+        WEEKLY TOOLS TO<br />
+        <span style="color:#D4900C;">REWIRE YOUR<br />REALITY.</span>
+      </h1>
+
+      <div class="gold-line"></div>
+
+      <p class="mb-6" style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.75;">
+        Every week I send one mental model, one reality shift, to help you rewire your subconscious for autopilot success. Join up!
+      </p>
+
+      <!-- What you get -->
+      <div class="mb-6">
+        <div class="check-item">
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-opacity="0.4"/>
+            <path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>One mental model to shift how you see results</span>
+        </div>
+        <div class="check-item">
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-opacity="0.4"/>
+            <path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>One subconscious reprogramming exercise you can do today</span>
+        </div>
+        <div class="check-item">
+          <svg class="check-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-opacity="0.4"/>
+            <path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Real stories from clients creating real-world change</span>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="ck-form" class="flex flex-col gap-3">
+        <input type="text" id="ck-first-name" class="rl-input" name="first_name" placeholder="First name" autocomplete="given-name" />
+        <input type="email" id="ck-email" class="rl-input" name="email_address" placeholder="Email address" autocomplete="email" required />
+        <button type="submit" id="ck-submit" class="rl-btn">
+          Subscribe to the Newsletter →
+        </button>
+        <div id="ck-error" style="display:none; color:#f87171; font-size:12px; text-align:center;"></div>
+      </form>
+
+      <p style="color:rgba(255,255,255,0.2); font-size:11px; margin-top:12px; text-align:center;">
+        No spam. Unsubscribe anytime. Your email is safe with me.
+      </p>
+
+      <script>
+        document.getElementById('ck-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = document.getElementById('ck-submit');
+          const err = document.getElementById('ck-error');
+          btn.textContent = 'Subscribing...';
+          btn.disabled = true;
+          err.style.display = 'none';
+          const data = new FormData();
+          data.append('email_address', document.getElementById('ck-email').value);
+          data.append('first_name', document.getElementById('ck-first-name').value);
+          try {
+            const res = await fetch('https://app.kit.com/forms/7057137/subscriptions', {
+              method: 'POST',
+              body: data,
+              headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok || res.status === 200) {
+              window.location.href = '/thank-you.html';
+            } else {
+              throw new Error('Subscription failed');
+            }
+          } catch(ex) {
+            err.textContent = 'Something went wrong. Please try again.';
+            err.style.display = 'block';
+            btn.textContent = 'Subscribe to the Newsletter →';
+            btn.disabled = false;
+          }
+        });
+      </script>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 text-center pb-6" style="color:rgba(255,255,255,0.15); font-size:11px;">
+    © 2026 Reality Labs Coaching. All rights reserved.
+  </footer>
+
+</body>
+</html>

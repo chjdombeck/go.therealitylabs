@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're In - Reality Labs Newsletter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    html, body {
+      background-color: #0d0b08 !important;
+      min-height: 100vh;
+    }
+
+    /* Subtle warm glow behind center content */
+    .ambient-glow {
+      background:
+        radial-gradient(ellipse 50% 40% at 50% 45%, rgba(200, 130, 10, 0.12) 0%, transparent 70%);
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .gold-line {
+      width: 40px;
+      height: 2px;
+      background: #D4900C;
+      margin: 20px auto;
+    }
+
+    .check-ring {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(212,144,12,0.5);
+      background: radial-gradient(circle at 50% 50%, rgba(212,144,12,0.15), transparent 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .you-in-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      justify-content: flex-start;
+    }
+
+    .bullet-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #D4900C;
+      flex-shrink: 0;
+    }
+
+    /* Top right badge */
+    .top-badge {
+      border: 1px solid rgba(212,144,12,0.4);
+      color: #D4900C;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="ambient-glow relative">
+
+  <!-- NAV -->
+  <nav class="relative z-10 flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+    <a href="index.html">
+      <img src="RealityLabsLogo.png" alt="Reality Labs Coaching" style="height:44px; width:auto;" />
+    </a>
+    <span class="top-badge hidden sm:inline-block">Free Weekly Email Newsletter</span>
+  </nav>
+
+  <!-- CENTERED CONTENT -->
+  <main class="relative z-10 flex flex-col items-center justify-center text-center px-6" style="min-height: calc(100vh - 72px);">
+
+    <!-- Checkmark circle -->
+    <div class="check-ring">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 11l4.5 4.5L17 7" stroke="#D4900C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- YOU'RE IN label -->
+    <div class="you-in-label">You're in</div>
+
+    <!-- Headline -->
+    <h1 style="font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; color: #fff; margin-bottom: 0;">
+      THANK YOU FOR<br />
+      <span style="color: #D4900C;">SUBSCRIBING.</span>
+    </h1>
+
+    <!-- Gold divider -->
+    <div class="gold-line"></div>
+
+    <!-- Subtext -->
+    <p style="color: rgba(255,255,255,0.55); font-size: 15px; line-height: 1.7; max-width: 440px; margin-bottom: 32px;">
+      Welcome to the <strong style="color:rgba(255,255,255,0.8);">Reality Labs Weekly Newsletter.</strong><br />
+      Your first edition is on its way.
+    </p>
+
+    <!-- Next steps -->
+    <div style="text-align: left; max-width: 340px; width: 100%;">
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <span>Check your inbox for your first edition</span>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <span>Add us to your contacts so nothing goes to spam</span>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <span>New editions drop every Friday</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 text-center pb-6" style="color:rgba(255,255,255,0.15); font-size:11px;">
+    © 2026 Reality Labs Coaching. All rights reserved.
+  </footer>
+
+</body>
+</html>
