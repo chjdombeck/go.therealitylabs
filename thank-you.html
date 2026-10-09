@@ -60,23 +60,54 @@
       margin-bottom: 16px;
     }
 
-    .bullet-item {
+    /* Delivery schedule callout */
+    .schedule-card {
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: rgba(255,255,255,0.6);
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      justify-content: flex-start;
+      gap: 16px;
+      text-align: left;
+      padding: 20px 24px;
+      border: 1px solid rgba(212,144,12,0.35);
+      border-radius: 4px;
+      background: linear-gradient(180deg, rgba(212,144,12,0.10), rgba(212,144,12,0.03));
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.4),
+        0 12px 32px -8px rgba(212,144,12,0.18);
     }
 
-    .bullet-dot {
-      width: 5px;
-      height: 5px;
+    .schedule-icon {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: #D4900C;
+      border: 1.5px solid rgba(212,144,12,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+    }
+
+    .schedule-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #D4900C;
+      margin-bottom: 4px;
+    }
+
+    .schedule-time {
+      font-size: clamp(1.25rem, 5vw, 1.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .spam-note {
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 16px;
     }
 
     /* Top right badge */
@@ -130,16 +161,21 @@
       You're all signed up.
     </p>
 
-    <!-- Next steps -->
-    <div style="text-align: left; max-width: 320px; width: 100%;">
-      <div class="bullet-item">
-        <div class="bullet-dot"></div>
-        <span>New editions go out weekly, every Friday at 10 a.m. CT</span>
+    <!-- Delivery schedule -->
+    <div style="max-width: 460px; width: 100%;">
+      <div class="schedule-card">
+        <div class="schedule-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="4.5" width="14" height="12" rx="1.5" stroke="#D4900C" stroke-width="1.5"/>
+            <path d="M3 8.5h14M7 2.5v3M13 2.5v3" stroke="#D4900C" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="schedule-label">New editions weekly</div>
+          <div class="schedule-time">Every Friday <span style="white-space: nowrap;">at 10 a.m. CT</span></div>
+        </div>
       </div>
-      <div class="bullet-item">
-        <div class="bullet-dot"></div>
-        <span>Add us to your contacts so nothing goes to spam</span>
-      </div>
+      <p class="spam-note">Add us to your contacts so nothing goes to spam.</p>
     </div>
 
   </main>
